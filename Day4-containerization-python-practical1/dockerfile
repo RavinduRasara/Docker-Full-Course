@@ -1,0 +1,17 @@
+#Starts with Ubuntu Linux as the base operating system
+FROM ubuntu:latest
+    
+#sets /app as the working directory inside the container (Creating a folder where your application will live)
+WORKDIR /app
+
+# Copies all files from your current folder (on your computer) into /app (inside the container),(Putting your app.py file into the container)
+COPY . /app
+
+# Install the necesary packages
+RUN apt-get update && apt-get install -y python3-pip
+
+#set the envionment variable
+ENV NAME=world
+
+#Run the command to start the application
+CMD ["python3", "app.py"]
