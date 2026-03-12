@@ -1,5 +1,6 @@
+
 ###########################################
-# BASE IMAGE
+# BASE IMAGE (only dedicated to build stage)
 ###########################################
 
 FROM ubuntu AS build
@@ -16,6 +17,7 @@ RUN CGO_ENABLED=0 go build -o /app .
 # HERE STARTS THE MAGIC OF MULTI STAGE BUILD
 ############################################
 
+# minimalistic distroless image(go language doesn't need go run time)
 FROM scratch
 
 # Copy the compiled binary from the build stage
@@ -23,4 +25,5 @@ COPY --from=build /app /app
 
 # Set the entrypoint for the container to run the binary
 ENTRYPOINT ["/app"]
+
 
