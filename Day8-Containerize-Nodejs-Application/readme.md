@@ -207,3 +207,13 @@ Day8-Containerize-Nodejs-Application$ docker run --name node-container-new -p 50
 Server is running on http://localhost:5000
 
 ```
+### run container with volume
+
+```bash
+Day8-Containerize-Nodejs-Application$ docker run --name container1 -p 5000:5000 -v $(pwd):/app -v /app/node_modules node-image:v1
+
+> day8-containerize-nodejs-application@1.0.0 start
+> node server.js
+
+Server is running on http://localhost:5000
+```
